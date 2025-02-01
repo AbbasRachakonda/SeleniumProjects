@@ -1,0 +1,55 @@
+package Automation.sessiion2;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Login {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+      WebDriver driver = new ChromeDriver();
+      String URL="https://rahulshettyacademy.com/locatorspractice/";
+      driver.get(URL);
+      String Username = "Abbas";
+      driver.findElement(By.id("inputUsername")).sendKeys(Username);
+      //String Password = "rahulshettyacademy";
+      String Password = "rahul";
+      driver.findElement(By.name("inputPassword")).sendKeys(Password);
+      driver.findElement(By.className("submit")).click();
+      Thread.sleep(2000);
+      WebElement Warning = driver.findElement(By.className("error"));
+      String WarningText = Warning.getText();
+      System.out.println(WarningText);
+      String textfyp = "Forgot your password?";
+      driver.findElement(By.linkText(textfyp)).click();
+      Thread.sleep(2000);
+      driver.findElement(By.className("reset-pwd-btn")).click();
+      Thread.sleep(2000);
+      WebElement PasswordInfo = driver.findElement(By.className("infoMsg"));
+      String PasswordInfoText = PasswordInfo.getText();
+      System.out.println(PasswordInfoText);
+      String [] PasswordBreak = PasswordInfoText.split("'");
+      System.out.println(PasswordBreak[1]);
+      driver.findElement(By.className("go-to-login-btn")).click();
+      driver.findElement(By.id("inputUsername")).sendKeys(Username);
+      driver.findElement(By.name("inputPassword")).sendKeys(PasswordBreak[1]);
+      Thread.sleep(2000);
+      driver.findElement(By.className("submit")).click();
+      Thread.sleep(2000);
+      WebElement Hello = driver.findElement(By.tagName("h2"));
+      String HelloText = Hello.getText();
+      System.out.println(HelloText);
+      
+      String[] HelloTextArray = HelloText.split(" ");
+      System.out.println(HelloTextArray[1]);
+      
+      String[] actualNameArray = HelloTextArray[1].split(",");
+      System.out.println(actualNameArray[0]);
+      System.out.println(actualNameArray[0].equals(Username));
+      driver.findElement(By.className("logout-btn")).click();
+      System.out.println("Test is Completed Succesfully ");
+      //driver.quit(); 
+	}
+}

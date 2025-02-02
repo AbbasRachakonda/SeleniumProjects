@@ -1,0 +1,27 @@
+package Automation.sessiion2;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LoginNewLocators {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		WebDriver driver = new ChromeDriver();
+		String URL = "https://rahulshettyacademy.com/locatorspractice/";
+		driver.get(URL);
+		String Username = "Abbas";
+		driver.findElement(By.cssSelector("input[placeholder='Username']")).sendKeys(Username);
+		String Password ="Abbas123";
+		driver.findElement(By.xpath("//input[@type='password']")).sendKeys(Password);
+		driver.findElement(By.xpath("//input[@id='chkboxOne']")).click();
+		//driver.findElement(By.xpath("//input[@id='chkboxTwo']")).click();
+		driver.findElement(By.cssSelector("#chkboxTwo")).click();
+		//driver.findElement(By.linkText("Forgot your password?")).click();
+		driver.findElement(By.partialLinkText("Forgot your")).click();
+
+	}
+
+}
